@@ -1,18 +1,18 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
+using RTLTMPro;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
     public GameObject mainPage;
-
     public GameObject firstPage;
+    public GameObject secondPage;
 
     public TMP_InputField inputField;
-
     public TextMeshProUGUI resultText;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -27,13 +27,22 @@ public class GameController : MonoBehaviour
 
     public void FirstPage()
     {
-        mainPage.SetActive(false);
         firstPage.SetActive(true);
+        secondPage.SetActive(false);
+        mainPage.SetActive(false);
+    }
+
+    public void SecondPage()
+    {
+        firstPage.SetActive(false);
+        secondPage.SetActive(true);
+        mainPage.SetActive(false);
     }
     
     public void ReturnToMainMenu()
     {
         firstPage.SetActive(false);
+        secondPage.SetActive(false);
         mainPage.SetActive(true);
     }
 
@@ -43,4 +52,18 @@ public class GameController : MonoBehaviour
         resultText.GetComponent<TextMeshProUGUI>().text = s;
         //inputField.text = "";
     }
+
+    public void SetButtonActiveOrDeActive()
+    {
+        if (SecondPageController.isActive)
+        {
+            SecondPageController.isActive = false;
+        }
+        else
+        {
+            SecondPageController.isActive = true;
+        }
+    }
+    
+    
 }
